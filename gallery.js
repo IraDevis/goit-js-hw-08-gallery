@@ -35,6 +35,7 @@ function createImgCard(galleryImages) {
 
 function onGalleryCardClick(e) {
     e.preventDefault();
+    window.addEventListener('keydown', onEscKeyPress);
     if (!e.target.classList.contains('gallery__image')) {
         return;
     };
@@ -43,11 +44,18 @@ function onGalleryCardClick(e) {
 };
     
 function onCloseModal() {
+    window.removeEventListener('keydown', onEscKeyPress);
     refs.lightbox.classList.remove('is-open')
 };
 
 function onOverlayClick(e) {
     if (e.currentTarget === e.target) {
         onCloseModal();
+    }
+};
+
+function onEscKeyPress(e) {
+    if (e.code === 'Escape') {
+        onCloseModal()
     }
 };
