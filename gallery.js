@@ -39,8 +39,8 @@ function onGalleryCardClick(e) {
     if (!e.target.classList.contains('gallery__image')) {
         return;
     };
-    
     refs.lightbox.classList.add('is-open');
+    refs.modalImg.setAttribute('src', e.target.getAttribute('data-source'))
 };
     
 function onCloseModal() {
