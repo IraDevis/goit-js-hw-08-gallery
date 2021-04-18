@@ -36,6 +36,7 @@ function createImgCard(galleryImages) {
 function onGalleryCardClick(e) {
     e.preventDefault();
     window.addEventListener('keydown', onEscKeyPress);
+    document.addEventListener('keydown', turnImg)
     if (!e.target.classList.contains('gallery__image')) {
         return;
     };
@@ -46,6 +47,7 @@ function onGalleryCardClick(e) {
     
 function onCloseModal() {
     window.removeEventListener('keydown', onEscKeyPress);
+    document.removeEventListener('keydown', turnImg)
     refs.lightbox.classList.remove('is-open')
     refs.modalImg.setAttribute('src', '');
     refs.modalImg.setAttribute('alt', '');
@@ -61,4 +63,25 @@ function onEscKeyPress(e) {
     if (e.code === 'Escape') {
         onCloseModal()
     }
+};
+
+const arraySrc = galleryImages.map(image => image.original);
+
+function turnImg (e) {
+  let newIdx = arraySrc.indexOf(refs.modalImg.src);
+  if (newIdx < 0) {
+    return;
+  }
+  if (e.code === 'ArrowLeft') {
+    newIdx -= 1;
+    if (newIdx === -1) {
+      newIdx = arraySrc.length - 1;
+    }
+  } else if (e.code === 'ArrowRight') {
+    newIdx += 1;
+    if (newIdx === arraySrc.length) {
+      newIdx = 0;
+    }
+  }
+  refs.modalImg.src = arraySrc[newIdx];
 };
