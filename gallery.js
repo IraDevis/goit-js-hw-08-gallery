@@ -47,6 +47,8 @@ function onGalleryCardClick(e) {
 function onCloseModal() {
     window.removeEventListener('keydown', onEscKeyPress);
     refs.lightbox.classList.remove('is-open')
+    refs.modalImg.setAttribute('src', '');
+    refs.modalImg.setAttribute('alt', '');
 };
 
 function onOverlayClick(e) {
