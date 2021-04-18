@@ -40,7 +40,8 @@ function onGalleryCardClick(e) {
         return;
     };
     refs.lightbox.classList.add('is-open');
-    refs.modalImg.setAttribute('src', e.target.getAttribute('data-source'))
+    refs.modalImg.setAttribute('src', e.target.getAttribute('data-source'));
+    refs.modalImg.setAttribute('alt', e.target.getAttribute('alt'));
 };
     
 function onCloseModal() {
