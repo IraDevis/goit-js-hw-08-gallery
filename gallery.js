@@ -40,17 +40,20 @@ function onGalleryCardClick(e) {
     if (!e.target.classList.contains('gallery__image')) {
         return;
     };
-    refs.lightbox.classList.add('is-open');
-    refs.modalImg.setAttribute('src', e.target.getAttribute('data-source'));
-    refs.modalImg.setAttribute('alt', e.target.getAttribute('alt'));
+  refs.lightbox.classList.add('is-open');
+  setLightBoxAttr(e.target.getAttribute('data-source'), e.target.getAttribute('alt'))
 };
     
+function setLightBoxAttr(src, alt) {
+  refs.modalImg.src = src;
+  refs.modalImg.alt = alt;
+}
+
 function onCloseModal() {
     window.removeEventListener('keydown', onEscKeyPress);
     document.removeEventListener('keydown', turnImg)
-    refs.lightbox.classList.remove('is-open')
-    refs.modalImg.setAttribute('src', '');
-    refs.modalImg.setAttribute('alt', '');
+  refs.lightbox.classList.remove('is-open')
+  setLightBoxAttr('', '')
 };
 
 function onOverlayClick(e) {
